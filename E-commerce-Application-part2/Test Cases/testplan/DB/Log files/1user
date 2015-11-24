@@ -1,0 +1,8 @@
+1445483909197,125,user_credentials table test 1,200,OK,DB Thread Group 1-1,text,true,171,1,1,85
+1445483909323,60,user_credentials table test 2,200,OK,DB Thread Group 1-1,text,true,614,1,1,32
+1445483909384,2868,product_information table test 1,200,OK,DB Thread Group 1-1,text,true,267,1,1,37
+1445483912261,210,product_information table test 2,200,OK,DB Thread Group 1-1,text,true,9,1,1,58
+1445483914973,53,user_credentials table test 1,200,OK,DB Thread Group 1-1,text,true,171,1,1,25
+1445483915027,49,user_credentials table test 2,200,OK,DB Thread Group 1-1,text,true,614,1,1,19
+1445483915076,1877,product_information table test 1,200,OK,DB Thread Group 1-1,text,true,288,1,1,26
+1445483916953,54,product_information table test 2,200,OK,DB Thread Group 1-1,text,true,9,1,1,20

@@ -1,0 +1,97 @@
+mysql -u root -p
+
+use ecommerce;
+
+show tables;
+
+create table user_credentials (
+	id MEDIUMINT NOT NULL AUTO_INCREMENT,
+	firstname varchar(20),
+	lastname varchar(20),
+	address varchar(30),
+	city varchar(25),
+	state varchar(5),
+	zip varchar(10),
+	email varchar(20),
+	username varchar(20),
+	password varchar(15),
+	role varchar(20),
+	sessionId varchar(50),
+	PRIMARY KEY (id),
+	UNIQUE (username,password),
+	UNIQUE (firstname,lastname)
+);
+
+insert into user_credentials (firstname,lastname,address,city,state,zip,email,username,password,role,sessionId) values 
+("Henry","Smith","Centre Avenue","Pittsburgh","PA","15213","henry@gmail.com","hsmith","smith","customer","");
+
+insert into user_credentials (firstname,lastname,address,city,state,zip,email,username,password,role,sessionId) values 
+("Tim","Bucktoo","Centre Avenue","Pittsburgh","PA","15213","tbucktoo@gmail.com","tbucktoo","bucktoo","customer","");
+
+insert into user_credentials (firstname,lastname,address,city,state,zip,email,username,password,role,sessionId) values 
+("Jenny","Admin","Centre Avenue","Pittsburgh","PA","15213","jenny@gmail.com","jadmin","admin","admin","");
+
+create table product_information (
+	product_id varchar(5) PRIMARY KEY,
+	product_asin varchar(15),
+	product_title varchar(150),
+	product_group varchar(20),
+	product_salesrank varchar(20),
+	product_similar varchar(5),
+	product_no_of_categories varchar(4),
+	product_description varchar(150),
+	product_price varchar(10)
+);
+
+create table category_information (
+	category_id varchar(10) PRIMARY KEY,
+	category_name varchar(60)
+);
+
+create table product_category_information (
+	product_id varchar(20),
+	category_id varchar(20)
+);
+
+create table product_similar_information (
+	product_id varchar(20),
+	similar_id varchar(20)
+);
+
+create table product_review_information (
+	product_id varchar(20),
+	review_date Date,
+	customer varchar(20),
+	rating int,
+	votes int,
+	helpful int
+);
+
+create table product_inventory_information (
+	product_id varchar(20),
+	quantity_remaining int
+);
+
+create table order_information (
+	product_id varchar(20) PRIMARY KEY,
+	quantity_sold int
+);
+
+INSERT INTO product_inventory_information (product_id,quantity_remaining) 
+SELECT product_id,5 from product_information;
+
+INSERT INTO order_information (product_id,quantity_sold) 
+SELECT product_id,0 from product_information;
+
+
+mysql --local-infile -u root -p
+
+LOAD DATA LOCAL INFILE 'public/file_parser/Product.txt' INTO TABLE product_information;
+
+LOAD DATA LOCAL INFILE 'public/file_parser/Category.txt' INTO TABLE category_information;
+
+LOAD DATA LOCAL INFILE 'public/file_parser/ProductCategory.txt' INTO TABLE product_category_information;
+
+LOAD DATA LOCAL INFILE 'public/file_parser/ProductSimilar.txt' INTO TABLE product_similar_information;
+
+LOAD DATA LOCAL INFILE 'public/file_parser/Review.txt' INTO TABLE product_review_information;
