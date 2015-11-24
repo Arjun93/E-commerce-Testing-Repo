@@ -26,7 +26,7 @@ router.post('/', function(req, res, next) {
 		var finalQuery = query.substring(0,query.length-1);
 		finalQuery = finalQuery+ " WHERE product_id="+productid+"";
 
-		
+		console.log(finalQuery);
 			
 		connection.query(finalQuery,function(err,rows) {            
 		    if(err) {

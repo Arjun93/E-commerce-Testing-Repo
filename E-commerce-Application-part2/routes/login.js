@@ -39,21 +39,21 @@ function validate_login_credentials(userName,password,req,res) {
             req.session.role = rows[0].role;
             var personRole = req.session.role;
             var userSessionId = req.sessionID;
-            console.log(userSessionId);
+            console.log("auth pass!!");
 
-            connection.query('UPDATE user_credentials SET sessionId = ? WHERE username = ?',[userSessionId,userName], function(err,rows) {
+            /*connection.query('UPDATE user_credentials SET sessionId = ? WHERE username = ?',[userSessionId,userName], function(err,rows) {
 
               if(err) {
                 console.log("Error Selecting : %s ",err );
               }
 
-            });
+            });*/
             
             if(personRole == 'admin') {
-              res.json({"message":"You are logged in","menu":"/login, /logout, /updateInfo, /modifyProduct, /viewUsers, /getProducts","Session ID":""+req.sessionID});
+              res.json({"message":"You are logged in","menu":"/login, /logout, /updateInfo, /modifyProduct, /viewUsers, /getProducts, /getOrders","Session ID":""+req.sessionID});
             }
             else {
-              res.json({"message":"You are logged in","menu":"/logout, /updateInfo, /getProducts","Session ID":""+req.sessionID});
+              res.json({"message":"You are logged in","menu":"/logout, /updateInfo, /getProducts, /buyProduct","Session ID":""+req.sessionID});
             }  
         }
         else {

@@ -22,8 +22,6 @@ router.post('/', function(req, res, next) {
 	var userName = req.body.username;
 	var passWord = req.body.password;
 
-	console.log(userName);
-
 	var query = "UPDATE user_credentials SET";
 
     if(typeof firstName != 'undefined' && firstName != "") {

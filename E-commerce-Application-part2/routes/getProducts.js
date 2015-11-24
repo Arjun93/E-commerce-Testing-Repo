@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
 				"category_information as CAT, product_category_information as PRO_CAT WHERE "+
 				"PRO.product_id = PRO_CAT.product_id AND CAT.category_id = PRO_CAT.category_id AND "+
 				"CAT.category_name='"+inputCategory+"'";
-		console.log(query);
+		//console.log(query);
 	}
 
 	if(typeof inputProductId != 'undefined' && inputProductId!="") {
@@ -37,14 +37,14 @@ router.get('/', function(req, res, next) {
 				"category_information as CAT, product_category_information as PRO_CAT WHERE "+
 				"PRO.product_id = PRO_CAT.product_id AND CAT.category_id = PRO_CAT.category_id AND "+
 				"CAT.category_name='"+inputCategory+"' AND PRO.product_description LIKE '%"+inputKeyword+"%'";
-		console.log(query);
+		//console.log(query);
 	}
 
 	searchProduct(query,req,res);
 });
 
 function searchProduct(query,req,res) {
-	
+	console.log(query);
 	connection.query(query,function(err,rows) {            
 	    if(err) {
 	        console.log("Error Selecting : %s ",err );
