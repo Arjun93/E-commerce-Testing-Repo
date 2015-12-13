@@ -23,10 +23,10 @@ function validateUserInformation(firstName,lastName,userAddress,userCity,userSta
 		validationFlag = 1;
 		console.log("Validation Error");
 	}
-	if (userState.length != 2 || userZip.length != 5) {
+	/*if (userState.length != 2 || userZip.length != 5) {
 		validationFlag = 1;
 		console.log("Validation Error");
-	}
+	}*/
 	if (userEmail.indexOf('@') == -1) {
 		validationFlag = 1;
 		console.log("Validation Error");

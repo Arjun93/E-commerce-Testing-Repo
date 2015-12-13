@@ -41,9 +41,9 @@ router.post('/', function(req, res, next) {
 	}
 
 	if(typeof userState != 'undefined' && userState != "") {
-		if(userState.length != 2) {
+		/*if(userState.length != 2) {
 			isInputFormatCorrect = false;
-		}
+		}*/
 		query += " state= '"+userState+"',";
 	}
 

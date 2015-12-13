@@ -16,6 +16,7 @@ var modifyProduct = require('./routes/modifyProduct');
 var viewProduct = require('./routes/getProducts');
 var buyProduct = require('./routes/buyProduct');
 var getOrders = require('./routes/getOrders');
+var alsoBought = require('./routes/alsoBought');
 var connect = require("connect");
 //var redis   = require("redis");
 //var redisStore = require('connect-redis')(session);
@@ -35,9 +36,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 var storeOptions = {
-    //host: 'localhost',
-    host: 'ecommerce.ccwtwgtut47e.us-east-1.rds.amazonaws.com',
-    port: 3306,
+    host: 'localhost',
+    //host: 'ecommerce.ccwtwgtut47e.us-east-1.rds.amazonaws.com',
+    //port: 3306,
     user: 'root',
     password: '12312312',
     database: 'ecommerce'
@@ -63,6 +64,7 @@ app.use('/modifyProduct', modifyProduct);
 app.use('/getProducts', viewProduct);
 app.use('/buyProduct', buyProduct);
 app.use('/getOrders', getOrders);
+app.use('/alsoBought', alsoBought);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
