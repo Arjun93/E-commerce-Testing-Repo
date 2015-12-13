@@ -17,6 +17,7 @@ var viewProduct = require('./routes/getProducts');
 var buyProduct = require('./routes/buyProduct');
 var getOrders = require('./routes/getOrders');
 var alsoBought = require('./routes/alsoBought');
+var getRecommendations = require('./routes/getRecommendations');
 var connect = require("connect");
 //var redis   = require("redis");
 //var redisStore = require('connect-redis')(session);
@@ -65,6 +66,7 @@ app.use('/getProducts', viewProduct);
 app.use('/buyProduct', buyProduct);
 app.use('/getOrders', getOrders);
 app.use('/alsoBought', alsoBought);
+app.use('/getRecommendations', getRecommendations);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
