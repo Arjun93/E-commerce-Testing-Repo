@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 });     
 
 function retrieveOrderInformation(req,res) {
-	var query = "SELECT * FROM order_information";
+	var query = "SELECT * FROM order_information where quantity_sold > 0";
 	console.log(query);		
 	connection.query(query,function(err,rows) {            
 	    if(err) {

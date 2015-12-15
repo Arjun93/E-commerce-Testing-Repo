@@ -85,8 +85,6 @@ create table related_products (
 	UNIQUE(from_node_id,to_node_id)
 );
 
-
-
 INSERT INTO product_inventory_information (product_id,quantity_remaining) 
 SELECT product_id,5 from product_information;
 
