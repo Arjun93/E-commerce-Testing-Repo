@@ -6,8 +6,8 @@ var connection = require('./../routes/dbConnection');
 router.post('/', function(req, res, next) {
     var userName = req.body.username;
     var password = req.body.password;
-    console.log(userName);
-    console.log(password);
+    //console.log(userName);
+    //console.log(password);
     if(typeof userName == 'undefined' || typeof password == 'undefined' || userName == "" || password == "") {
       res.json({"err_message":"Not sufficient information"});
       req.session.endUser="";
@@ -31,7 +31,8 @@ function validate_login_credentials(userName,password,req,res) {
       connection.query('SELECT * FROM user_credentials where username = ? AND password = ?',[userName,password],function(err,rows) {            
       
         if(err) {
-          console.log("Error Selecting : %s ",err );
+          //console.log("Error Selecting : %s ",err );
+          res.json({"message":"There was a problem with this action"});
         }
         if(rows.length > 0) {
             req.session.cookie.maxAge = new Date(Date.now() + 900000);
@@ -39,7 +40,7 @@ function validate_login_credentials(userName,password,req,res) {
             req.session.role = rows[0].role;
             var personRole = req.session.role;
             var userSessionId = req.sessionID;
-            console.log("auth pass!!");
+            //console.log("auth pass!!");
 
             /*connection.query('UPDATE user_credentials SET sessionId = ? WHERE username = ?',[userSessionId,userName], function(err,rows) {
 
@@ -57,7 +58,7 @@ function validate_login_credentials(userName,password,req,res) {
             }  
         }
         else {
-          console.log("auth fail!!!");
+          //console.log("auth fail!!!");
           req.session.endUser = "";
           res.json({"err_message":"That username and password combination was not correct"});
         }

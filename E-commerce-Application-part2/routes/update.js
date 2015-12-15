@@ -67,29 +67,29 @@ router.post('/', function(req, res, next) {
 	}
 
 	var finalQuery = query.substring(0,query.length-1);
-	console.log(finalQuery);
+	//console.log(finalQuery);
 
 	
 	//connection.query('SELECT * FROM user_credentials where sessionId = ?',[req.sessionID],function(err,rows) {            
     connection.query('SELECT * FROM user_credentials where username = ?',[req.session.endUser],function(err,rows) {            
-	    console.log("Retrieving rows");
+	    //console.log("Retrieving rows");
 	    if(err) {
-	        console.log("Error Selecting : %s ",err );
+	        //console.log("Error Selecting : %s ",err );
 	        console.log("User not logged in");
 	        res.json({"message":"There was a problem with this action"});
 	    }
       
 	    if(rows.length > 0) {
 	      	userDbSessionId = rows[0].sessionId;
-	      	console.log(req.sessionId);
-	      	console.log(userDbSessionId);
+	      	//console.log(req.sessionId);
+	      	//console.log(userDbSessionId);
 	      	//finalQuery = finalQuery+ " WHERE sessionId='"+userDbSessionId+"'";
 	      	finalQuery = finalQuery+ " WHERE username='"+req.session.endUser+"'";
 		    if (isInputFormatCorrect == true) {
 				updateInformation(userName,finalQuery,req,res,connection);
 			}
 			else {
-				console.log("Validation error");
+				//console.log("Validation error");
 			    res.json({"message":"There was a problem with this action"});
 			}
 	    }
@@ -101,17 +101,17 @@ router.post('/', function(req, res, next) {
 
 function updateInformation(userName,finalQuery,req,res,connection) {
 	var query = finalQuery;
-	console.log(query);
+	//console.log(query);
 	connection.query(query,function(err,rows) {            
 	    if(err) {
-	      console.log("Error Selecting : %s ",err );
+	      //console.log("Error Selecting : %s ",err );
 	      res.json({"message":"There was a problem with this action--"});
 	    }
 	    else {
 	      if(query.indexOf(userName) != -1) {
 	      	req.session.endUser = userName;
 	      	var meUser = req.session.endUser;
-	      	console.log("New User Name: "+meUser);
+	      	//console.log("New User Name: "+meUser);
 	      }
 	      res.json({"message":"Your information has been updated"});
 	    }

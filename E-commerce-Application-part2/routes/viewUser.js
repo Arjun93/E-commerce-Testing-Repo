@@ -8,14 +8,14 @@ router.get('/', function(req, res, next) {
   var firstnamePattern = req.query.fname;
   var lastnamePattern = req.query.lname;
   var personRole = req.session.role;
-  console.log(firstnamePattern);
-  console.log(lastnamePattern);
+  //console.log(firstnamePattern);
+  //console.log(lastnamePattern);
 
   var query = "SELECT firstname,lastname FROM user_credentials";
   if(personRole == 'admin') {
     	if(firstnamePattern || lastnamePattern) {
       		query += " WHERE firstname LIKE '%"+firstnamePattern+"%' AND lastname LIKE '%"+lastnamePattern+"%'";
-      		console.log(query);
+      		//console.log(query);
     	}
 
       connection.query(query,function(err,rows) {            

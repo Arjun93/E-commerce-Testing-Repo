@@ -36,7 +36,7 @@ router.post('/', function(req, res, next) {
 function getRecommendations(productIdOne,res) {
     connection.query('SELECT to_node_id FROM related_products where from_node_id = ? LIMIT 5',[productIdOne],function(err,rows) {            
       if(err) {
-        console.log("Error Selecting : %s ",err );
+        //console.log("Error Selecting : %s ",err );
         res.json({"message":"There was a problem with this action"});
       }
       if(rows.length > 0) {

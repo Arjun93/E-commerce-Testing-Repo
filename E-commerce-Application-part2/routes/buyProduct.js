@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
 	}
 
 	var finalQuery = query.substring(0,query.length-1);
-	console.log(finalQuery);
+	//console.log(finalQuery);
 
 	if(typeof sessionUserName != 'undefined') {			
 		connection.beginTransaction(function(err) {
@@ -23,9 +23,11 @@ router.post('/', function(req, res, next) {
 	        if (err) {
 	          return connection.rollback(function() {
 	            throw err;
+	            res.json({"message":"There was a problem with this action"});
+	            return;
 	          });
 	        }
-        	console.log('success!');
+        	//console.log('success!');
 	    });			
 	}
 	else {
@@ -36,10 +38,10 @@ router.post('/', function(req, res, next) {
 function retrieveInformation(req,res,finalQuery,userInputProductId) {
 	var query = finalQuery;
 	var stockAvailable;
-	console.log(query);
+	//console.log(query);
 	connection.query(query,function(err,rows) {            
 	    if(err) {
-		    console.log("Error Selecting : %s ",err );
+		    //console.log("Error Selecting : %s ",err );
 		    res.json({"message":"There was a problem with this action"});
 	    }
 	    if(rows.length > 0) {
@@ -59,10 +61,11 @@ function retrieveInformation(req,res,finalQuery,userInputProductId) {
 function updateInformation(req,res,connection,stockAvailable,userInputProductId) {
 	var query = "UPDATE product_inventory_information SET quantity_remaining = ";
 	query += stockAvailable + " WHERE product_id = "+userInputProductId;
-	console.log(query);
+	//console.log(query);
 	connection.query(query,function(err,rows) {            
 	    if(err) {
-	      console.log("Error Selecting : %s ",err );
+	      //console.log("Error Selecting : %s ",err );
+	      res.json({"message":"There was a problem with this action"});
 	    }
 	    else {
 	      updateOrders(req,res,connection,userInputProductId);
@@ -73,10 +76,11 @@ function updateInformation(req,res,connection,stockAvailable,userInputProductId)
 
 function updateOrders(req,res,connection,userInputProductId) {
 	var query = "INSERT INTO order_information (product_id, quantity_sold) VALUES("+userInputProductId+",1) ON DUPLICATE KEY UPDATE quantity_sold = quantity_sold + 1";
-	console.log(query);
+	//console.log(query);
 	connection.query(query,function(err,rows) {            
 	    if(err) {
-	      console.log("Error Selecting : %s ",err );
+	      //console.log("Error Selecting : %s ",err );
+	      res.json({"message":"There was a problem with this action"});
 	    }
 	    else {
 	      res.json({"message":"01 The purchase has been made successfully"});

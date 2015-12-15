@@ -25,7 +25,7 @@ router.post('/', function(req, res, next) {
 
 		connection.query('INSERT INTO related_products set ?',insertData,function(err,rows) {            
 		    if(err) {
-		      console.log("Error Selecting : %s ",err );
+		      //console.log("Error Selecting : %s ",err );
 		      res.json({"message":"There was a problem with this action"});
 		    }
 		    else {

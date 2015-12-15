@@ -9,7 +9,7 @@ router.post('/', function(req, res, next) {
   var userSessionId = req.sessionID;
   var userName = req.session.endUser;
   var userDbSessionId;
-  console.log(userSessionId);  
+  //console.log(userSessionId);  
 
   if(req.session && req.session.endUser) {
     req.session.destroy();

@@ -21,7 +21,7 @@ function validateUserInformation(firstName,lastName,userAddress,userCity,userSta
 	var validationFlag = 0;
 	if (firstName == "" || lastName =="" || userAddress =="" || userCity =="" ||userState == "" || userZip == "" || userEmail == "" || userName == "" || passWord == "" ) {
 		validationFlag = 1;
-		console.log("Validation Error");
+		//console.log("Validation Error");
 	}
 	/*if (userState.length != 2 || userZip.length != 5) {
 		validationFlag = 1;
@@ -29,12 +29,12 @@ function validateUserInformation(firstName,lastName,userAddress,userCity,userSta
 	}*/
 	if (userEmail.indexOf('@') == -1) {
 		validationFlag = 1;
-		console.log("Validation Error");
+		//console.log("Validation Error");
 	}
 
 	if (userEmail.indexOf('.') == -1) {
 		validationFlag = 1;
-		console.log("Validation Error");
+		//console.log("Validation Error");
 	}
 
 	if (validationFlag == 1) {
@@ -72,7 +72,7 @@ function insertUserInformation(firstName,lastName,userAddress,userCity,userState
 		connection.query('INSERT INTO user_credentials set ? ',insertData,function(err,rows) {            
 		    if(err) {
 			    res.json({"message":"there was a problem with your registration"});
-			    console.log("Error Selecting : %s ",err );
+			    //console.log("Error Selecting : %s ",err );
 		    }
 		    else {
 		      	res.json({"message":"Your account has been registered"});	
